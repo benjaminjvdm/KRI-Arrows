@@ -54,3 +54,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+#Disclaimer
+This Pine Script is for informational and educational purposes only. It is not financial advice and should not be considered as such. Trading involves risk, and you could lose money. Consult with a qualified financial advisor before making any investment decisions. The author is not responsible for any losses incurred as a result of using this script.
