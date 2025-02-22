@@ -1,5 +1,9 @@
 # Kairi Relative Index with Arrows 📈📉
 
+<div align="center">
+  <img src="https://github.com/benjaminjvdm/KRI-Arrows/blob/8c9ba7d37c178b382f70678f567eb1ef718531f3/logo" alt="KRI Logo" width="200"/>
+</div>
+
 This Pine Script calculates the Kairi Relative Index (KRI) and plots buy/sell signals on the chart. 
 
 ## How it works ⚙️
