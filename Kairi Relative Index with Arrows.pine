@@ -1,21 +1,23 @@
-//@version=4
+//@version=6
 // Need a Custom Script Developed? Contact Me = sales@byeol.tech or https://byeol.tech/#contact
-kairi(len, s)=>100 * (s - sma(s, len))/(sma(s, len))
-getColor(c0, c1, val, compVal)=> val >= compVal ? c0 : c1
+kairi(len, s) =>
+    100 * (s - ta.sma(s, len)) / ta.sma(s, len)
+getColor(c0, c1, val, compVal) =>
+    val >= compVal ? c0 : c1
 
-study("Kairi Relative Index", overlay=true)
+indicator('Kairi Leading Arrows', overlay = true)
 //          INPUTS:
-lenK0 = input(7, title="Length of Kairi Index 0", type=input.integer, minval=1)
-lenK1 = input(24, title="Length of Kairi Index 1", type=input.integer, minval=1)
-lenSMA = input(25, title="Length of SMA", type=input.integer, minval=1)
-plotSlow = input(false, title="Plot Slow Kairi Relative Index?")
+lenK0 = input.int(7, title = 'Length of Kairi Index 0', minval = 1)
+lenK1 = input.int(24, title = 'Length of Kairi Index 1', minval = 1)
+lenSMA = input.int(25, title = 'Length of SMA', minval = 1)
+plotSlow = input(false, title = 'Plot Slow Kairi Relative Index?')
 
 //  Fast Kairi 
 kri0 = kairi(lenK0, close)
 //  Slow Kairi
 kri1 = kairi(lenK1, close)
 //  SMA of Slow Kairi values for generating signals.
-_SMA = sma(kri1, lenSMA)
+_SMA = ta.sma(kri1, lenSMA)
 
 
 //          PLOTTING:
@@ -25,8 +27,8 @@ _SMA = sma(kri1, lenSMA)
 //fill(k0, m0, color=getColor(color.green, color.red, kri0, _SMA))
 
 //          CROSSOVER DETECTION & PLOTTING:
-smaCrossesKriAbove = crossover(kri0, _SMA)
-smaCrossesKriBelow = crossunder(kri0, _SMA)
+smaCrossesKriAbove = ta.crossover(kri0, _SMA)
+smaCrossesKriBelow = ta.crossunder(kri0, _SMA)
 
-plotshape(smaCrossesKriAbove, style=shape.triangleup, color=color.green, size=size.small, title="SMA Crosses Above KRI", location=location.belowbar)
-plotshape(smaCrossesKriBelow, style=shape.triangledown, color=color.red, size=size.small, title="SMA Crosses Below KRI", location=location.abovebar)
+plotshape(smaCrossesKriAbove, style = shape.triangleup, color = color.new(color.green, 0), size = size.small, title = 'SMA Crosses Above KRI', location = location.belowbar)
+plotshape(smaCrossesKriBelow, style = shape.triangledown, color = color.new(color.red, 0), size = size.small, title = 'SMA Crosses Below KRI', location = location.abovebar)
