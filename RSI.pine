@@ -1,0 +1,21 @@
+//@version=5
+indicator(title="RSI with Crossovers", shorttitle="RSI Crossover", overlay=true)
+
+len = input.int(14, title="RSI Length")
+src = input.source(close, title="Source")
+up = ta.rma(math.max(ta.change(src), 0), len)
+down = ta.rma(-math.min(ta.change(src), 0), len)
+rsi = down == 0 ? 100 : up / (up + down) * 100
+rsi_ema = ta.ema(rsi, 14)
+
+plot(rsi, color=color.blue, title="RSI")
+plot(rsi_ema, color=color.orange, title="RSI EMA")
+hline(50, color=color.white)
+
+// Crossover/Crossunder logic
+rsi_cross_ema_up = ta.crossover(rsi, rsi_ema)
+rsi_cross_ema_down = ta.crossunder(rsi, rsi_ema)
+
+// Plot arrows on price chart
+plotshape(rsi_cross_ema_up, style=shape.triangleup, color=color.green, size=size.small, location=location.bottom, title="RSI/EMA Crossover")
+plotshape(rsi_cross_ema_down, style=shape.triangledown, color=color.red, size=size.small, location=location.top, title="RSI/EMA Crossunder")
